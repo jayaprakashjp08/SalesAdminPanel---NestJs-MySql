@@ -92,4 +92,24 @@ export class AppService {
       );
     }
   }
+
+  async getMaximumMonthlyTurnOver(): Promise<any> {
+    try {
+      const maximumTurnOver = await this.stockRepository.query(
+        query.getMaximumTurnOver,
+      );
+
+      return {
+        status: true,
+        code: HttpStatus.OK,
+        message: 'Got Successfully',
+        data: maximumTurnOver,
+      };
+    } catch (e) {
+      return new HttpException(
+        { message: e },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 }

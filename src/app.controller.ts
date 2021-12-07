@@ -21,4 +21,9 @@ export class AppController {
   getTotalMonthlyTurnOver(): Promise<any> {
     return this.appService.getTotalMonthlyTurnOver();
   }
+
+  @Get('/getMaximumMonthlyTurnOver')
+  getMaximumMonthlyTurnOver(): Promise<any> {
+    return this.appService.getMaximumMonthlyTurnOver();
+  }
 }
