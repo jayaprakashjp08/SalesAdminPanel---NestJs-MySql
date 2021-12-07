@@ -1,12 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
+import {ApiParam, ApiBody} from '@nestjs/swagger'
+import { WholeSaler } from './models/wholeSaler.entity';
 
-@Controller()
+
+@Controller('salesAdminPanel')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('/wholeSaler/{wholeSalerId}')
+  @ApiParam({name:'wholeSalerId', type:'number'})
+  getWholeSalerDetails(@Param() wholeSalerId : number): Promise<any> {
+    return this.appService.getWholeSalerDetails(wholeSalerId);
   }
 }
+
